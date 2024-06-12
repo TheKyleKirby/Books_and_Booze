@@ -42,6 +42,20 @@ const itemRoutes = require('./routes/itemRoutes');
 app.use('/auth', authRoutes);
 app.use('/items', itemRoutes);
 
+// Cocktail API
+const { getCocktails } = require('./controllers/api/cocktails');
+
+app.get('/cocktails/:searchTerm', async (req, res) => {
+  const searchTerm = req.params.searchTerm;
+  console.log(`Received request for cocktails with search term: ${searchTerm}`);
+  const cocktails = await getCocktails(searchTerm);
+  if (cocktails) {
+    res.json(cocktails);
+  } else {
+    res.status(500).json({ error: 'An error occurred while fetching the data.' });
+  }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
