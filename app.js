@@ -59,3 +59,36 @@ app.get('/cocktails/:searchTerm', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+
+// Node Mailer
+const nodemailer = require("nodemailer");
+
+// Node Mailer Transporter
+const transporter = nodemailer.createTransport({
+    host: 'smtp.example.com',
+    port: 587,
+    secure: false,
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+// Welcome Email 
+const welcomeEmail = {
+    from: 'booksbooze3@gmail.com',
+    to: 'recipient@example.com',
+    subject: 'Hello from Books and Booze',
+    text: "Welcome to Books and Booze!",
+    html: <p> <b>'Thanks for joining Books and Booze, remember to be kind' </b></p>
+ };
+
+transporter.sendMail(welcomeEmail, (error, info) => {
+    if (error) {
+        return console.log(error);
+    }
+    console.log('Email Sent: %s', info.messageId);
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+});
