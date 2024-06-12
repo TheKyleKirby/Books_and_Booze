@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const app = express();
-const PORT = 3000; // Or any other port you want to use
+const PORT = 3000; 
 
 // Set up Handlebars.js as the template engine
 app.engine('handlebars', exphbs.engine());
