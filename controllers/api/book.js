@@ -10,7 +10,7 @@ const getBooks = async (searchTerm) => {
       title: book.volumeInfo.title,
       authors: book.volumeInfo.authors,
       publisher: book.volumeInfo.publisher,
-    }));
+    })).slice(0, 10);
     return books;
   } catch (error) {
     console.error(`Error: ${error}`);

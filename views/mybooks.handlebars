@@ -1,0 +1,20 @@
+<h1>My Books</h1>
+
+<div id="bookshelf">
+    {{#each books}}
+        <div class="book" id="book-{{id}}">
+            <h2>{{title}}</h2>
+            <h3>By {{author}}</h3>
+            <button class="remove-book">Remove from library</button>
+        </div>
+    {{/each}}
+</div>
+
+<script>
+    document.querySelectorAll('.remove-book').forEach(button => {
+        button.addEventListener('click', event => {
+            const bookId = event.target.closest('.book').id.split('-')[1];
+            // Create a delete route in your API that takes the book ID as a parameter(rec.perams.id)
+        });
+    });
+</script>

@@ -6,6 +6,7 @@ const exphbs = require('express-handlebars');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const routes = require('./controllers');
 
 const app = express();
 const PORT = 3000; 
@@ -36,11 +37,12 @@ db.sequelize.sync({ force: false }).then(() => {
 });
 
 // Routes
-const authRoutes = require('./routes/authRoutes');
-const itemRoutes = require('./routes/itemRoutes');
+app.use(routes);
+// const authRoutes = require('./routes/authRoutes');
+// const itemRoutes = require('./routes/itemRoutes');
 
-app.use('/auth', authRoutes);
-app.use('/items', itemRoutes);
+// app.use('/auth', authRoutes);
+// app.use('/items', itemRoutes);
 
 // Cocktail API
 const { getCocktails } = require('./controllers/api/cocktails');
