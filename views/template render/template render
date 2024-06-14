@@ -1,0 +1,7 @@
+const Handlebars = require('handlebars');
+
+const template = Handlebars.compile(document.getElementById('all').innerHTML);
+
+const html = template(data);
+
+document.getElementById('output').innerHTML = html;
