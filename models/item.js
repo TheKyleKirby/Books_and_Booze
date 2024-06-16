@@ -13,6 +13,13 @@ module.exports = (sequelize, DataTypes) => {
         createdAt: 'createdAt',
         updatedAt: 'updatedAt'
     });
+
+    Item.associate = (models) => {
+        Item.belongsTo(models.User, {
+            foreignKey: 'userId',
+            as: 'user'
+        });
+    };
+
     return Item;
 };
-
