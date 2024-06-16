@@ -1,20 +1,33 @@
 <h1>My Books</h1>
 
+<div id="search">
+    <input type="text" id="search-input" placeholder="Search for a book">
+    <button id="search-button">Search</button>
+</div>
+
 <div id="bookshelf">
     {{#each books}}
         <div class="book" id="book-{{id}}">
             <h2>{{title}}</h2>
-            <h3>By {{author}}</h3>
-            <button class="remove-book">Remove from library</button>
+            <h3>By {{authors}}</h3>
+            <button class="add-book">Add to library</button>
         </div>
     {{/each}}
 </div>
 
 <script>
-    document.querySelectorAll('.remove-book').forEach(button => {
+    document.querySelectorAll('.add-book').forEach(button => {
         button.addEventListener('click', event => {
             const bookId = event.target.closest('.book').id.split('-')[1];
             // Create a delete route in your API that takes the book ID as a parameter(rec.perams.id)
+            console.log(bookId)
         });
+    });
+    document.getElementById('search-button').addEventListener('click', async () => {
+        const searchInput = document.getElementById('search-input').value;
+        // Create a get route in your API that takes the search input as a parameter(rec.perams.search)
+        console.log(searchInput);
+        window.location.replace('/mybooks?searchterm=' + searchInput)
+    
     });
 </script>
