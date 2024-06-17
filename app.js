@@ -6,10 +6,9 @@ const exphbs = require('express-handlebars');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const routes = require('./controllers');
-
+const homeRoutes = require('./controllers/homeRoutes');
 const app = express();
-const PORT = 3000; 
+const port = 3001; 
 
 // Set up Handlebars.js as the template engine
 app.engine('handlebars', exphbs.engine());
@@ -36,28 +35,21 @@ db.sequelize.sync({ force: false }).then(() => {
     console.log('Database & tables created!');
 });
 
-// Routes
-app.use(routes);
-// const authRoutes = require('./routes/authRoutes');
-// const itemRoutes = require('./routes/itemRoutes');
+app.use(session({
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: true,
+}));
 
-// app.use('/auth', authRoutes);
-// app.use('/items', itemRoutes);
+app.use('/', homeRoutes);
 
-// Cocktail API
-const { getCocktails } = require('./controllers/api/cocktails');
-
-app.get('/cocktails/:searchTerm', async (req, res) => {
-  const searchTerm = req.params.searchTerm;
-  console.log(`Received request for cocktails with search term: ${searchTerm}`);
-  const cocktails = await getCocktails(searchTerm);
-  if (cocktails) {
-    res.json(cocktails);
-  } else {
-    res.status(500).json({ error: 'An error occurred while fetching the data.' });
-  }
+// Fallback route for handling undefined routes
+app.use((req, res) => {
+    res.status(404).send('Page not found');
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
+
