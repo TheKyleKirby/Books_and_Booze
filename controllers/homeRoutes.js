@@ -1,49 +1,31 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const axios = require('axios');
-const { getCocktails } = require('./api/cocktails');
-// Default Root
-router.get('/', (req, res) => {
-  res.send('Welcome to Books and Booze!');
+
+// Home page route (redirects to login)
+router.get("/", (req, res) => {
+  res.redirect("/login");
 });
 
-// Route to render the home page or main page
-router.get('/', (req, res) => {
-    res.render('home', {
-        logged_in: req.session.logged_in
-    });
+// Login page route
+router.get("/login", (req, res) => {
+  res.render("login", { title: "Login" });
 });
 
-// Route to handle searching for books
-router.get('/mybooks', async (req, res) => {
-    console.log('Received request for books');
-    try {
-        const term = req.query.searchterm;
-        const response = await axios.get(`http://localhost:3001/books/${term}`);
-        console.log(response.data)
-        const books = response.data.map(book => ({
-          title: book.title,
-          authors: book.authors.join(', '), // Ensure authors are joined as a string
-          publisher: book.publisher,
-        })).slice(0, 10);
-        res.render('mybooks', { 
-            books,
-            logged_in: req.session.logged_in
-        });
-    } catch (err) {
-        console.error(`Error: ${err}`);
-        res.status(500).json(err);
-    }
+// Signup page route
+router.get("/signup", (req, res) => {
+  res.render("signup", { title: "Signup" });
 });
-//Route for searcing cocktails
-router.get('/cocktails/:searchTerm', async (req, res) => {
-    const searchTerm = req.params.searchTerm;
-    console.log(`Fetching cocktails for search term: ${searchTerm}`);
-    const cocktails = await getCocktails(searchTerm);
-    if (cocktails) {
-        res.render('mycocktails', { cocktails });
-    } else {
-        res.status(500).json({ error: 'Failed to fetch cocktails' });
-    }
+
+// My Books page route
+router.get("/mybooks", (req, res) => {
+  // You can add authentication middleware here if needed
+  res.render("mybooks", { title: "My Books", books: [] });
 });
+
+// My Cocktails page route
+router.get("/mycocktails", (req, res) => {
+  // You can add authentication middleware here if needed
+  res.render("mycocktails", { title: "My Cocktails", cocktails: [] });
+});
+
 module.exports = router;
