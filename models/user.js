@@ -14,5 +14,13 @@ module.exports = (sequelize, DataTypes) => {
         createdAt: 'createdAt',
         updatedAt: 'updatedAt'
     });
+
+    User.associate = (models) => {
+        User.hasMany(models.Item, {
+            foreignKey: 'userId',
+            as: 'items'
+        });
+    };
+
     return User;
 };
