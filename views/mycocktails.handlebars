@@ -3,7 +3,6 @@
         <input type="text" id="search-input" placeholder="Search for a cocktail">
         <button id="search-button">Search</button>
     </div>
-
     <div id="cocktails">
         {{#if cocktails.length}}
             <ul>
@@ -33,7 +32,6 @@
                     window.location.replace('/cocktails/' + searchInput);
                 }
             });
-
             document.querySelectorAll('.add-cocktail').forEach(button => {
                 button.addEventListener('click', event => {
                     const cocktailName = event.target.dataset.cocktail;
