@@ -35,5 +35,15 @@ router.get('/mybooks', async (req, res) => {
         res.status(500).json(err);
     }
 });
-
+//Route for searcing cocktails
+router.get('/cocktails/:searchTerm', async (req, res) => {
+    const searchTerm = req.params.searchTerm;
+    console.log(`Fetching cocktails for search term: ${searchTerm}`);
+    const cocktails = await getCocktails(searchTerm);
+    if (cocktails) {
+        res.render('mycocktails', { cocktails });
+    } else {
+        res.status(500).json({ error: 'Failed to fetch cocktails' });
+    }
+});
 module.exports = router;
