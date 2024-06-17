@@ -1,5 +1,4 @@
 const axios = require('axios');
-
 const getCocktails = async (searchTerm) => {
   try {
     const response = await axios.get(`http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`);
@@ -31,5 +30,4 @@ const getCocktails = async (searchTerm) => {
     return [];
   }
 };
-
 module.exports = { getCocktails };

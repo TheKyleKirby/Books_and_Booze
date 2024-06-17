@@ -1,0 +1,86 @@
+body {
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#bookshelf {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.book {
+    background-color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.book:hover {
+    box-shadow: 0 8px 15px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+.book h2, .book h3 {
+    margin: 0;
+    color: #f5f5f5;
+}
+
+.add-book {
+    background-color: #008CBA; /* Blue */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.add-book:hover {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+}
+
+#search {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#search-button {
+    background-color: #008CBA; /* Blue */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+#search-button:hover {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+}
+
+#search-input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
