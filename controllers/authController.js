@@ -1,9 +1,24 @@
 const bcrypt = require('bcrypt');
-const db = require('../models');
-const User = db.User;
+// const db = require('../models');
+// const User = db.User;
+const { User } = require('../../models');
+const router = require('express').Router();
 
 // User registration
-const signup = async (req, res) => {
+// const signup = async (req, res) => {
+//     try {
+//         const { username, password } = req.body;
+//         const hashedPassword = await bcrypt.hash(password, 10);
+//         const user = await User.create({ username, password: hashedPassword });
+//         req.session.userId = user.id; // Set the session userId
+//         res.status(201).redirect('/home'); // Redirect to home after successful signup
+//     } catch (error) {
+//         console.error('Error during signup:', error);
+//         res.status(500).json({ error: error.message });
+//     }
+// };
+
+router.post('/api/signup', async (req, res) => {
     try {
         const { username, password } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -14,7 +29,9 @@ const signup = async (req, res) => {
         console.error('Error during signup:', error);
         res.status(500).json({ error: error.message });
     }
-};
+  });
+
+
 
 // User login
 const login = async (req, res) => {
