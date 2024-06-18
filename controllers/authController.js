@@ -9,7 +9,7 @@ const signup = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await User.create({ username, password: hashedPassword });
         req.session.userId = user.id; // Set the session userId
-        res.status(201).json(user);
+        res.status(201).redirect('/home'); // Redirect to home after successful signup
     } catch (error) {
         console.error('Error during signup:', error);
         res.status(500).json({ error: error.message });
@@ -29,7 +29,7 @@ const login = async (req, res) => {
             return res.status(401).json({ error: 'Invalid password' });
         }
         req.session.userId = user.id; // Set the session userId
-        res.status(200).json({ message: 'Login successful' });
+        res.status(200).redirect('/home'); // Redirect to home after successful login
     } catch (error) {
         console.error('Error during login:', error);
         res.status(500).json({ error: error.message });
@@ -43,7 +43,7 @@ const logout = (req, res) => {
             return res.status(500).json({ error: 'Could not log out, please try again.' });
         }
         res.clearCookie('connect.sid');
-        res.status(200).json({ message: 'Logout successful' });
+        res.status(200).redirect('/auth/login'); // Redirect to login after logout
     });
 };
 

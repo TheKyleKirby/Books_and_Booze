@@ -18,19 +18,20 @@ router.get("/signup", (req, res) => {
 
 // My Books page route
 router.get("/mybooks", (req, res) => {
-  // You can add authentication middleware here if needed
+  
   res.render("mybooks", { title: "My Books", books: [] });
 });
 
 // My Cocktails page route
 router.get("/mycocktails", (req, res) => {
-  // You can add authentication middleware here if needed
+ 
   res.render("mycocktails", { title: "My Cocktails", cocktails: [] });
 });
 
+// Home route after login or signup
+router.get("/home", (req, res) => {
+  res.render("home", { title: "Home" });
+});
+
 module.exports = router;
-
-
-
-
 
