@@ -1,4 +1,4 @@
-drop database if exists books_and_boozedb;
+drop database if exists booksandboozedb;
 
-create database books_and_boozedb;
+create database booksandboozedb;
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 try {
     const bookRoutes = require('./bookRoutes');
     router.use('/books', bookRoutes);
@@ -7,6 +8,7 @@ try {
 } catch (error) {
     console.error("Error loading book routes:", error);
 }
+
 try {
     const cocktailRoutes = require('./cocktailRoutes');
     router.use('/cocktails', cocktailRoutes);
@@ -14,6 +16,7 @@ try {
 } catch (error) {
     console.error("Error loading cocktail routes:", error);
 }
+
 try {
     const homeRoutes = require('../controllers/homeRoutes');
     router.use('/', homeRoutes);
@@ -21,6 +24,7 @@ try {
 } catch (error) {
     console.error("Error loading home routes:", error);
 }
+
 try {
     const authRoutes = require('./authRoutes');
     router.use('/auth', authRoutes);
@@ -28,6 +32,7 @@ try {
 } catch (error) {
     console.error("Error loading auth routes:", error);
 }
+
 try {
     const itemRoutes = require('./itemRoutes');
     router.use('/items', itemRoutes);
@@ -35,4 +40,13 @@ try {
 } catch (error) {
     console.error("Error loading item routes:", error);
 }
+
+try {
+    const userController = require('../controllers/userController');
+    router.get('/users', userController.getAllUsers);
+    console.log("User routes loaded successfully");
+} catch (error) {
+    console.error("Error loading user routes:", error);
+}
+
 module.exports = router;
