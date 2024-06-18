@@ -17,11 +17,4 @@ db.sequelize = sequelize;
 db.User = require('./user')(sequelize, Sequelize);
 db.Item = require('./item')(sequelize, Sequelize);
 
-// Setup associations
-Object.keys(db).forEach(modelName => {
-    if (db[modelName].associate) {
-        db[modelName].associate(db);
-    }
-});
-
 module.exports = db;
