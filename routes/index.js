@@ -42,8 +42,8 @@ try {
 }
 
 try {
-    const userController = require('../controllers/userController');
-    router.get('/users', userController.getAllUsers);
+    const userRoutes = require('./userRoutes');
+    router.use('/users', userRoutes);
     console.log("User routes loaded successfully");
 } catch (error) {
     console.error("Error loading user routes:", error);
