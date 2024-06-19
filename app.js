@@ -1,3 +1,4 @@
+const sequelize = require('./config/database');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
@@ -28,7 +29,7 @@ app.use(session({
 app.use(express.static('public'));
 
 // Sync database
-db.sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: false }).then(() => {
     console.log('Database & tables created!');
 }).catch(error => console.error('Unable to sync the database:', error));
 
