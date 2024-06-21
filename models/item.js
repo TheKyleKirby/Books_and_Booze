@@ -1,25 +1,22 @@
-module.exports = (sequelize, DataTypes) => {
-    const Item = sequelize.define('Item', {
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        description: {
-            type: DataTypes.STRING,
-            allowNull: true
-        }
-    }, {
-        timestamps: true,
-        createdAt: 'createdAt',
-        updatedAt: 'updatedAt'
-    });
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
 
-    Item.associate = (models) => {
-        Item.belongsTo(models.User, {
-            foreignKey: 'userId',
-            as: 'user'
-        });
-    };
+class Item extends Model {}
 
-    return Item;
-};
+Item.init({
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    description: {
+        type: DataTypes.STRING,
+        allowNull: true
+    }
+}, {
+    sequelize,
+    modelName: 'item',
+    timestamps: true
+});
+
+module.exports = Item;
+
