@@ -1,10 +1,9 @@
-const axios = require("axios");
+const router = require('express').Router();
+const axios = require('axios');
 
 const getBooks = async (searchTerm) => {
   try {
-    const response = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
-    );
+    const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`);
     const books = response.data.items
       .map((book) => ({
         id: book.id,
@@ -20,4 +19,9 @@ const getBooks = async (searchTerm) => {
   }
 };
 
-module.exports = { getBooks };
+router.get('/:searchTerm', async (req, res) => {
+  const books = await getBooks(req.params.searchTerm);
+  res.render('mybooks', { title: 'My Books', books });
+});
+
+module.exports = router;

@@ -1,37 +1,32 @@
-const express = require("express");
-const router = express.Router();
+const router = require('express').Router();
+const withAuth = require('../middlewares/authMiddleware');
 
-// Home page route (redirects to login)
-router.get("/", (req, res) => {
-  res.redirect("/login");
+router.get('/', (req, res) => {
+  res.redirect('/login');
 });
 
-// Login page route
-router.get("/login", (req, res) => {
-  res.render("login", { title: "Login" });
+router.get('/login', (req, res) => {
+  if (req.session.userId) {
+    res.redirect('/home');
+    return;
+  }
+  res.render('login');
 });
 
-// Signup page route
-router.get("/signup", (req, res) => {
-  res.render("signup", { title: "Signup" });
+router.get('/signup', (req, res) => {
+  res.render('signup');
 });
 
-// My Books page route
-router.get("/mybooks", (req, res) => {
-  
-  res.render("mybooks", { title: "My Books", books: [] });
+router.get('/home', withAuth, (req, res) => {
+  res.render('home', { title: 'Home' });
 });
 
-// My Cocktails page route
-router.get("/mycocktails", (req, res) => {
- 
-  res.render("mycocktails", { title: "My Cocktails", cocktails: [] });
+router.get('/mybooks', withAuth, (req, res) => {
+  res.render('mybooks', { title: 'My Books', booksPage: true, books: [] });
 });
 
-// Home route after login or signup
-router.get("/home", (req, res) => {
-  res.render("home", { title: "Home" });
+router.get('/mycocktails', withAuth, (req, res) => {
+  res.render('mycocktails', { title: 'My Cocktails', cocktailsPage: true, cocktails: [] });
 });
 
 module.exports = router;
-

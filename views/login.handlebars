@@ -1,133 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #1a1a1a;
-            color: #f5f5f5;
-            font-family: 'Roboto', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            background-color: #282828;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px 0 hsla(0, 0%, 0%, 0.2);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        h1 {
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 5px;
-            text-align: left;
-        }
-
-        input[type="text"], input[type="password"] {
-            padding: 10px;
-            border-radius: 25px;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-            outline: none;
-            transition: border 0.3s;
-        }
-
-        input[type="text"]:focus, input[type="password"]:focus {
-            border-color: #008CBA;
-        }
-
-        button[type="submit"] {
-            background-color: #008CBA;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.4s;
-        }
-
-        button[type="submit"]:hover {
-            background-color: white;
-            color: #008CBA;
-            border: 2px solid #008CBA;
-        }
-
-        p {
-            margin-top: 20px;
-            color: #aaa;
-        }
-
-        a.button {
-            color: #008CBA;
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        a.button:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Login</h1>
-        <form class="login-form">
-            <div>
-                <label for="username-login">Username:</label>
-                <input type="text" id="username-login" name="username" required>
-            </div>
-            <div>
-                <label for="password-login">Password:</label>
-                <input type="password" id="password-login" name="password" required>
-            </div>
-            <button type="submit">Login</button>
+  <header>
+    <h1>Books and Booze</h1>
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Login</h2>
+        <form class="form login-form">
+          <div class="form-group">
+            <label for="username-login">Username:</label>
+            <input class="form-input" type="text" id="username-login" />
+          </div>
+          <div class="form-group">
+            <label for="password-login">Password:</label>
+            <input class="form-input" type="password" id="password-login" />
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit">Login</button>
+          </div>
         </form>
-        <p>Don't have an account? <a href="/signup" class="button">Sign Up</a></p>
+      </div>
+      <div class="col-md-6">
+        <h2>Signup</h2>
+        <form class="form signup-form">
+          <div class="form-group">
+            <label for="username-signup">Username:</label>
+            <input class="form-input" type="text" id="username-signup" />
+          </div>
+          <div class="form-group">
+            <label for="password-signup">Password:</label>
+            <input class="form-input" type="password" id="password-signup" />
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit">Signup</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <script>
-        const loginFormHandler = async (event) => {
-            event.preventDefault();
-
-            const username = document.querySelector('#username-login').value.trim();
-            const password = document.querySelector('#password-login').value.trim();
-
-            if (username && password) {
-                const response = await fetch('/auth/login', {
-                    method: 'POST',
-                    body: JSON.stringify({ username, password }),
-                    headers: { 'Content-Type': 'application/json' },
-                });
-
-                if (response.ok) {
-                    document.location.replace('/home');
-                } else {
-                    alert(response.statusText);
-                }
-            }
-        };
-
-        document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
-    </script>
+  </div>
+  <script src="/js/auth.js"></script>
 </body>
 </html>
