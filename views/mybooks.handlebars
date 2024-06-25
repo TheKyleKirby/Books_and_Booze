@@ -1,18 +1,21 @@
-<h1>{{title}}</h1>
-<div id="search">
-  <input type="text" id="search-input" placeholder="Search for a book">
-  <button id="search-button">Search</button>
+<div class="container">
+  <h1>{{title}}</h1>
+  <div id="search">
+    <input type="text" id="search-input" placeholder="Search for a book">
+    <button id="search-button">Search</button>
+  </div>
+  <div id="bookshelf">
+    {{#each books}}
+      <div class="book" id="book-{{id}}">
+        <h2>{{title}}</h2>
+        <h3>By {{authors}}</h3>
+        <p>Publisher: {{publisher}}</p>
+        <button class="add-book">Add to library</button>
+      </div>
+    {{/each}}
+  </div>
 </div>
-<div id="bookshelf">
-  {{#each books}}
-    <div class="book" id="book-{{id}}">
-      <h2>{{title}}</h2>
-      <h3>By {{authors}}</h3>
-      <p>Publisher: {{publisher}}</p>
-      <button class="add-book">Add to library</button>
-    </div>
-  {{/each}}
-</div>
+
 <script>
   document.querySelectorAll('.add-book').forEach(button => {
     button.addEventListener('click', event => {

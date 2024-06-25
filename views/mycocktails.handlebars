@@ -1,30 +1,33 @@
-<h1>{{title}}</h1>
-<div id="search">
-  <input type="text" id="search-input" placeholder="Search for a cocktail">
-  <button id="search-button">Search</button>
+<div class="container">
+  <h1>{{title}}</h1>
+  <div id="search">
+    <input type="text" id="search-input" placeholder="Search for a cocktail">
+    <button id="search-button">Search</button>
+  </div>
+  <div id="cocktails">
+    {{#if cocktails.length}}
+      <ul>
+        {{#each cocktails}}
+          <li class="cocktail">
+            <h2>{{this.name}}</h2>
+            <img src="{{this.thumbnail}}" alt="{{this.name}}">
+            <p><strong>Category:</strong> {{this.category}}</p>
+            <p><strong>Instructions:</strong> {{this.instructions}}</p>
+            <ul>
+              {{#each this.ingredients}}
+                <li>{{this.ingredient}} - {{this.measure}}</li>
+              {{/each}}
+            </ul>
+            <button class="add-cocktail" data-cocktail="{{this.name}}">Add to my cocktails</button>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p>No cocktails found.</p>
+    {{/if}}
+  </div>
 </div>
-<div id="cocktails">
-  {{#if cocktails.length}}
-    <ul>
-      {{#each cocktails}}
-        <li class="cocktail">
-          <h2>{{this.name}}</h2>
-          <img src="{{this.thumbnail}}" alt="{{this.name}}">
-          <p><strong>Category:</strong> {{this.category}}</p>
-          <p><strong>Instructions:</strong> {{this.instructions}}</p>
-          <ul>
-            {{#each this.ingredients}}
-              <li>{{this.ingredient}} - {{this.measure}}</li>
-            {{/each}}
-          </ul>
-          <button class="add-cocktail" data-cocktail="{{this.name}}">Add to my cocktails</button>
-        </li>
-      {{/each}}
-    </ul>
-  {{else}}
-    <p>No cocktails found.</p>
-  {{/if}}
-</div>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search-button').addEventListener('click', async () => {

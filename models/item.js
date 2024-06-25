@@ -18,7 +18,7 @@ Item.init(
     description: {
       type: DataTypes.STRING,
     },
-    userId: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'user',

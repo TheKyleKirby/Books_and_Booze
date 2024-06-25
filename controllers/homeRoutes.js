@@ -10,11 +10,7 @@ router.get('/login', (req, res) => {
     res.redirect('/home');
     return;
   }
-  res.render('login');
-});
-
-router.get('/signup', (req, res) => {
-  res.render('signup');
+  res.render('auth'); 
 });
 
 router.get('/home', withAuth, (req, res) => {
