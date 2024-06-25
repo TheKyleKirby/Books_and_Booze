@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/cocktails.css">
-  <title>My Cocktails</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <h1>My Cocktails</h1>
+<div class="container">
+  <h1>{{title}}</h1>
   <div id="search">
     <input type="text" id="search-input" placeholder="Search for a cocktail">
     <button id="search-button">Search</button>
@@ -35,22 +26,21 @@
       <p>No cocktails found.</p>
     {{/if}}
   </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('search-button').addEventListener('click', async () => {
-        const searchInput = document.getElementById('search-input').value;
-        if (searchInput) {
-          window.location.replace('/cocktails/' + searchInput);
-        }
-      });
-      document.querySelectorAll('.add-cocktail').forEach(button => {
-        button.addEventListener('click', event => {
-          const cocktailName = event.target.dataset.cocktail;
-          alert('Adding ' + cocktailName + ' to your cocktails!');
-          // Here you can add code to handle adding the cocktail to your collection
-        });
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('search-button').addEventListener('click', async () => {
+      const searchInput = document.getElementById('search-input').value;
+      if (searchInput) {
+        window.location.replace('/cocktails/' + searchInput);
+      }
+    });
+    document.querySelectorAll('.add-cocktail').forEach(button => {
+      button.addEventListener('click', event => {
+        const cocktailName = event.target.dataset.cocktail;
+        alert('Adding ' + cocktailName + ' to your cocktails!');
       });
     });
-  </script>
-</body>
-</html>
+  });
+</script>
