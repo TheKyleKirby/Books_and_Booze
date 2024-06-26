@@ -33,7 +33,7 @@
     document.getElementById('search-button').addEventListener('click', async () => {
       const searchInput = document.getElementById('search-input').value;
       if (searchInput) {
-        window.location.replace('/cocktails/' + searchInput);
+        window.location.replace('/api/cocktails/' + searchInput);
       }
     });
     document.querySelectorAll('.add-cocktail').forEach(button => {
