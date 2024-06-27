@@ -13,7 +13,7 @@ const loginFormHandler = async (event) => {
       });
 
       if (response.ok) {
-        document.location.replace('/home'); // Redirect to home.handlebars
+        document.location.replace('/home'); 
       } else {
         const errorData = await response.json();
         alert(response.statusText);

@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  if (req.session.userId) {
+  if (req.session.user_id) {
     res.redirect('/home');
     return;
   }
@@ -23,6 +23,14 @@ router.get('/mybooks', withAuth, (req, res) => {
 
 router.get('/mycocktails', withAuth, (req, res) => {
   res.render('mycocktails', { title: 'My Cocktails', cocktailsPage: true, cocktails: [] });
+});
+
+router.get('/mydrinks', withAuth, (req, res) => {
+  res.render('mydrinks', { title: 'My Drinks', drinksPage: true, drinks: [] });
+});
+
+router.get('/mylibrary', withAuth, (req, res) => {
+  res.render('mylibrary', { title: 'My Library', libraryPage: true, library: [] });
 });
 
 module.exports = router;
