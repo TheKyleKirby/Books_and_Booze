@@ -21,14 +21,15 @@ A full-stack application for managing books and cocktails. Users can search for 
 - Interactive UI
 
 ## Screenshots
-![Home Page](insert img)
-![My Books](inserct img)
+![Home Page](![alt text](image.png))
+![My Books](![alt text](image-1.png))
 
 ## Deployment
-[Link to deployed application](insert link)
+[Link to deployed application](https://books-and-booze.onrender.com/)
 
 ## Installation
 1. Clone the repository
 2. Install dependencies: `npm install`
 3. Set up environment variables in a `.env` file
 4. Run the application: `npm start`
+add 
