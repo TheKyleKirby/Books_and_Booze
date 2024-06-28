@@ -1,7 +1,13 @@
+<nav class="navbar">
+  <a href="/mybooks">Books</a>
+  <a href="/mylibrary">My Library</a>
+  <a href="/mycocktails">Drinks</a>
+  <a href="/mydrinks">My Drinks</a>
+</nav>
 <div class="container">
   <h1>{{title}}</h1>
   <div id="search">
-    <input type="text" id="search-input" placeholder="Search for a book">
+    <input type="text" id="search-input" placeholder="Search for a book" />
     <button id="search-button">Search</button>
   </div>
   <div id="bookshelf">
@@ -18,13 +24,9 @@
 
 <script>
   document.querySelectorAll('.add-book').forEach(button => {
-    button.addEventListener('click', event => {
-      const bookId = event.target.closest('.book').id.split('-')[1];
-      console.log(bookId);
-    });
-  });
-  document.getElementById('search-button').addEventListener('click', async () => {
-    const searchInput = document.getElementById('search-input').value;
-    window.location.replace('/api/books/' + searchInput);
-  });
+  button.addEventListener('click', event => { const bookId =
+  event.target.closest('.book').id.split('-')[1]; console.log(bookId); }); });
+  document.getElementById('search-button').addEventListener('click', async () =>
+  { const searchInput = document.getElementById('search-input').value;
+  window.location.replace('/api/books/' + searchInput); });
 </script>
