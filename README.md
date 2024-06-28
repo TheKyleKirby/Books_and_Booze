@@ -31,5 +31,4 @@ A full-stack application for managing books and cocktails. Users can search for 
 1. Clone the repository
 2. Install dependencies: `npm install`
 3. Set up environment variables in a `.env` file
-4. Run the application: `npm start`
-add 
+4. Run the application: `node app.js`
